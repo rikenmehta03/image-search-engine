@@ -1,0 +1,4 @@
+requests>=2.19.1
+flask-restx>=0.1.1
+imsearch
+uwsgi

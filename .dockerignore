@@ -1,0 +1,9 @@
+.git
+.cache
+.vscode
+node_modules
+public
+src
+package.json
+*.md
+yarn.lock
