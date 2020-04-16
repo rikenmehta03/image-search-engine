@@ -1,5 +1,5 @@
 import os
-from flask import jsonify, request, make_response, send_from_directory
+from flask import jsonify, redirect, request, make_response, send_from_directory, url_for
 
 from app import app
 
@@ -13,7 +13,7 @@ app.static_folder = os.path.join(PUBLIC_PATH, 'static')
 @app.errorhandler(404)
 def not_found(error):
     """ error handler """
-    return make_response(jsonify({'error': 'Not found'}), 404)
+    return redirect('/')
 
 
 @app.route('/<path:filename>')
@@ -25,7 +25,7 @@ def index(filename='index.html'):
 @app.route('/ping', methods=['GET'])
 def ping_server():
     """ Testing endpoint """
-    return jsonify({'ok': True, 'message': 'bdad test server version {} up and running'.format(VERSION)}), 200
+    return jsonify({'ok': True, 'message': 'imsearch test server version {} up and running'.format(VERSION)}), 200
 
 
 def run_server():

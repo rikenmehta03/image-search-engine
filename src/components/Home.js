@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -34,30 +33,22 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Home = ({ dispatch, search }) => {
+export default ({ search, user }) => {
   const classes = useStyles();
-  
+
   return (
     <div className={classes.root}>
-      <ToolBar />
+      <ToolBar user={user} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Grid container className={classes.container} direction="column" justify={search.results.length === 0 ? "center" : "flex-start"} alignItems="center">
           {
             <SearchPanel url={search.searchQuery} />
           }
-          <Results />
+          <Results results={search.results} />
         </Grid>
         <Copyright />
       </main>
     </div>
   );
 }
-
-const mapStateToProps = state => ({
-  search: state.search
-});
-
-export default connect(
-  mapStateToProps
-)(Home);

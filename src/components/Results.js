@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -21,7 +20,7 @@ const useStyles = makeStyles(theme => ({
       }
 }));
 
-const Results = ({ results }) => {
+export default ({ results }) => {
     const classes = useStyles();
 
     return (
@@ -43,11 +42,3 @@ const Results = ({ results }) => {
         </Grid>
     )
 }
-
-const mapStateToProps = state => ({
-    results: state.search.results
-});
-
-export default connect(
-    mapStateToProps
-)(Results);

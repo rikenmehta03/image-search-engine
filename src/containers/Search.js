@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import SearchBar from '../components/SearchBar';
 
-import { updateSearchQuery, fetchResults } from '../actions';
+import { updateSearchQuery, fetchResults } from '../actions/search';
 
 const Search = ({ dispatch, search }) => {
 

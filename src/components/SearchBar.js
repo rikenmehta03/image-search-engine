@@ -9,11 +9,11 @@ import Upload from './Upload';
 const useStyles = makeStyles(theme => ({
     search: {
         position: 'relative',
-        border: '0.5px solid ' + fade(theme.palette.common.black, 0.15),
+        border: '0.5px solid ' + fade(theme.palette.primary.main, 0.25),
         borderRadius: theme.shape.borderRadius * 6,
-        backgroundColor: fade(theme.palette.common.black, 0.10),
+        backgroundColor: fade(theme.palette.common.black, 0.05),
         '&:hover': {
-            backgroundColor: fade(theme.palette.common.black, 0.20),
+            backgroundColor: fade(theme.palette.common.black, 0.10),
         },
         marginRight: theme.spacing(1),
         marginLeft: 0,
@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        color: theme.palette.primary.light
     },
     inputRoot: {
         color: 'inherit',

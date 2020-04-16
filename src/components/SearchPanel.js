@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const SearchPanel = ({ searchBar, url }) => {
+const SearchPanel = ({ url }) => {
     const classes = useStyles();
 
     if (url !== '')

@@ -1,8 +1,7 @@
 const initialState = {
     results: [],
     isFetchingResults: false,
-    searchQuery: '',
-    indexName: ''
+    searchQuery: ''
 }
 
 const search = (state = initialState, action) => {

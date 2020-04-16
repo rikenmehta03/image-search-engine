@@ -1,1 +1,1 @@
-from .search_controller import SearchController
+from .search_controller import SearchController, get_controller
