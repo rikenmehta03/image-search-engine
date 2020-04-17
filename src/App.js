@@ -4,7 +4,6 @@ import {
   Route
 } from "react-router-dom";
 
-import Home from './containers/HomeContainer';
 import Security from './containers/Security';
 import Login from './containers/LoginContainer';
 import Logon from './containers/RegisterContainer';
@@ -14,9 +13,6 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/home">
-          <Home />
-        </Route>
         <Route path="/login">
           <Login />
         </Route>

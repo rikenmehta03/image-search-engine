@@ -1,10 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
 import { useHistory, Redirect } from "react-router-dom";
 
 import Register from '../components/Register';
 
-const RegisterContainer  = ({ user }) => {
+export default () => {
     let history = useHistory();
 
     const registerHandler = ({ firstname, lastname, email, password }) => {
@@ -23,17 +23,9 @@ const RegisterContainer  = ({ user }) => {
             .then(response => response.json())
             .then(json => {
                 localStorage.setItem('token', json.token);
-                history.push("/home");
+                history.push("/");
             });
     }
-    const logedin = localStorage.getItem('token') && user.email !== '';
-    return logedin ? <Redirect to="/home" /> : <Register logonCallback={registerHandler} />;
+    const token = localStorage.getItem('token');
+    return token ? <Redirect to="/" /> : <Register logonCallback={registerHandler} />;
 }
-
-const mapStateToProps = state => ({
-    user: state.user
-});
-
-export default connect(
-    mapStateToProps
-)(RegisterContainer);

@@ -17,6 +17,13 @@ export const fetchingUser = () => {
     }
 }
 
+export const updateToken = (token) => {
+    return {
+        type: 'UPDATE_TOKEN',
+        token
+    }
+}
+
 export const fetchUser = () => {
     return dispatch => {
         dispatch(fetchingUser());

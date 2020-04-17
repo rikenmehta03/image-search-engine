@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { useHistory, Redirect } from "react-router-dom";
 
 import Login from '../components/Login';
 
-const LoginContainer = ({ user }) => {
+export default () => {
     let history = useHistory();
 
     const loginHandler = ({ email, password }) => {
@@ -21,17 +20,9 @@ const LoginContainer = ({ user }) => {
             .then(response => response.json())
             .then(json => {
                 localStorage.setItem('token', json.token);
-                history.push("/home");
+                history.push("/");
             });
     }
-    const logedin = localStorage.getItem('token') && user.email !== '';
-    return logedin ? <Redirect to="/home" /> : <Login loginCallback={loginHandler} />;
+    const token = localStorage.getItem('token');
+    return token ? <Redirect to="/" /> : <Login loginCallback={loginHandler} />;
 }
-
-const mapStateToProps = state => ({
-    user: state.user
-});
-
-export default connect(
-    mapStateToProps
-)(LoginContainer);

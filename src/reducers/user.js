@@ -4,7 +4,8 @@ const initialState = {
     email: '',
     selected_index: '',
     fetchingUser: false,
-    indices: []
+    indices: [],
+    token: ''
 }
 
 const search = (state = initialState, action) => {
@@ -31,6 +32,11 @@ const search = (state = initialState, action) => {
             return {
                 ...state,
                 indices: action.indices
+            }
+        case 'UPDATE_TOKEN':
+            return {
+                ...state,
+                token: action.token
             }
         case 'CLEAN_USER':
             return initialState
