@@ -1,9 +1,12 @@
+import os
 import jwt
 from flask import Flask, jsonify, session
 from flask_mongoengine import MongoEngine
 
 config = {
     'MONGODB_DB': 'search-engine',
+    'MONGODB_HOST': os.environ.get('MONGO_SERVICE_HOST', 'localhost'),
+    'MONGODB_PORT': int(os.environ.get('MONGO_SERVICE_PORT', '27017')),
     'SECRET_KEY': 'secret!'
 }
 
