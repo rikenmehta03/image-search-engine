@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
@@ -83,7 +84,7 @@ export default function SignIn({ loginCallback }) {
                         id="password"
                         autoComplete="current-password"
                         onChange={handleChange('password')}
-                        onKeyDown={(event) => {event.which === 13 && loginCallback(state)}}
+                        onKeyDown={(event) => { event.which === 13 && loginCallback(state) }}
                     />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
@@ -100,7 +101,7 @@ export default function SignIn({ loginCallback }) {
                     </Button>
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link href="/logon" variant="body2">
+                            <Link to="/logon" class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-body2 MuiTypography-colorPrimary">
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>
