@@ -10,7 +10,15 @@ import Search from '../containers/Search';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        width: '50%',
+        [theme.breakpoints.down('sm')]: {
+            width: '100%'
+        },
+        [theme.breakpoints.down('md') && theme.breakpoints.up('sm')]: {
+            width: '80%'
+        },
+        [theme.breakpoints.up('md')]: {
+            width: '60%'
+        },
         padding: theme.spacing(2)
     },
     card: {
@@ -33,7 +41,7 @@ const SearchPanel = ({ url }) => {
             <Grid item className={classes.root}>
                 <Paper elevation={3}>
                     <Grid container spacing={1} direction="row">
-                        <Grid item md={3}>
+                        <Grid item md={3} xs={12}>
                             <Card className={classes.card}>
                                 <CardMedia
                                     className={classes.cardMedia}
@@ -41,7 +49,7 @@ const SearchPanel = ({ url }) => {
                                 />
                             </Card>
                         </Grid>
-                        <Grid item md={9}>
+                        <Grid item md={9} xs={12}>
                             <Search />
                         </Grid>
                     </Grid>

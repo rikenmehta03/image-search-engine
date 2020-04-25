@@ -29,6 +29,8 @@ const search = (state = initialState, action) => {
                     isFetchingResults: false
                 }
             }
+        case 'CLEAN_SEARCH':
+            return initialState
         default:
             return state
     }

@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import CircularProgress from '@material-ui/core/CircularProgress';
 
+import Loading from '../components/Loading';
 import Home from '../containers/HomeContainer';
 import { updateToken, fetchUser } from '../actions/user';
 
@@ -20,7 +20,7 @@ const Security = ({ user, updateToken, fetchUser }) => {
     }, [user.token, fetchUser]);
 
     if(user.fetchingUser)
-        return <CircularProgress />;
+        return <Loading />;
 
     if(user.email !== '')
         return <Home />;

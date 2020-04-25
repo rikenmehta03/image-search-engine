@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,8 +18,7 @@ import UserDropdown from './UserDropdown';
 
 const useStyles = makeStyles(theme => ({
     appBar: {
-        zIndex: theme.zIndex.drawer + 1,
-        transition: theme.transitions.create(['width', 'margin'], {
+        transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
@@ -37,10 +37,19 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.getContrastText(blue[500]),
         backgroundColor: blue[500],
     },
+    appBarShift: props => ({
+        width: `calc(100% - ${props.drawerWidth})`,
+        marginLeft: props.drawerWidth,
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    })
 }));
 
-export default ({ user }) => {
-    const classes = useStyles();
+export default (props) => {
+    const { user, open } = props;
+    const classes = useStyles(props);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -59,7 +68,9 @@ export default ({ user }) => {
 
 
     return (
-        <AppBar position="fixed" className={classes.appBar}>
+        <AppBar position="fixed" className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+        })}>
             <Toolbar>
                 <img src={logo} alt="logo" className={classes.logo} />
                 <Typography component="h1" variant="h6" color="inherit" noWrap>
