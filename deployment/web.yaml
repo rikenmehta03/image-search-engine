@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080
+      nodePort: 30000
+  selector:
+    app: webapp
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+  labels:
+    app: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+        - name: webapp-container
+          image: rmehta3/search-engine
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
