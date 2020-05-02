@@ -1,5 +1,6 @@
 const initialState = {
     results: [],
+    primary: [],
     isFetchingResults: false,
     searchQuery: ''
 }
@@ -20,8 +21,9 @@ const search = (state = initialState, action) => {
             if (state.isFetchingResults === true || state.results.length === 0){
                 return {
                     ...state,
-                    results: action.payload,
-                    isFetchingResults: false
+                    results: action.data,
+                    isFetchingResults: false,
+                    ...action.metadata
                 }
             } else {
                 return {

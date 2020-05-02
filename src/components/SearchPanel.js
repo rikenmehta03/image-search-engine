@@ -1,12 +1,12 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
 import Paper from '@material-ui/core/Paper';
-import CardMedia from '@material-ui/core/CardMedia';
 
 import { makeStyles, fade } from '@material-ui/core/styles';
 
 import Search from '../containers/Search';
+import ResultImage from './ResultImage';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -20,34 +20,19 @@ const useStyles = makeStyles(theme => ({
             width: '60%'
         },
         padding: theme.spacing(2)
-    },
-    card: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        paddingLeft: '2px'
-    },
-    cardMedia: {
-        paddingTop: '56.25%', // 16:9
-        border: '2px solid ' + fade(theme.palette.common.black, 0.15) 
-    },
+    }
 }));
 
-const SearchPanel = ({ url }) => {
+const SearchPanel = ({ url, primary, updateAnalyticsQuery }) => {
     const classes = useStyles();
-
+    const result = [{ _id: uuidv4(), url, primary}]
     if (url !== '')
         return (
             <Grid item className={classes.root}>
                 <Paper elevation={3}>
                     <Grid container spacing={1} direction="row">
                         <Grid item md={3} xs={12}>
-                            <Card className={classes.card}>
-                                <CardMedia
-                                    className={classes.cardMedia}
-                                    image={url}
-                                />
-                            </Card>
+                            <ResultImage result={result} onClickHandler={() => updateAnalyticsQuery(result[0])} />
                         </Grid>
                         <Grid item md={9} xs={12}>
                             <Search />

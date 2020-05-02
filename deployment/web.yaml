@@ -31,7 +31,21 @@ spec:
       containers:
         - name: webapp-container
           image: rmehta3/search-engine
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
               protocol: TCP
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/root/key.json"
+          volumeMounts:
+            - name: service-key
+              mountPath: /root/key.json
+              subPath: key.json
+      volumes:
+        - name: service-key
+          secret:
+            secretName: gcp-config
+            items:
+              - key: key.json
+                path: key.json

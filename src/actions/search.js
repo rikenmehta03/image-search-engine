@@ -11,10 +11,11 @@ export const requestResults = () => {
     };
 }
 
-export const receiveResults = (data) => {
+export const receiveResults = ({ data, metadata }) => {
     return {
         type: 'RECEIVE_RESULTS',
-        payload: data
+        data,
+        metadata
     }
 }
 
@@ -56,6 +57,6 @@ export const fetchResults = (query) => {
         }
         return fetch(url, options)
             .then(response => response.json())
-            .then(json => dispatch(receiveResults(json.data)));
+            .then(json => dispatch(receiveResults(json)));
     }
 }

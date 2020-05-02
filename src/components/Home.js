@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 
 import ToolBar from './ToolBar';
 import Copyright from './Copyright';
@@ -14,7 +15,7 @@ import Results from './Results';
 import SearchPanel from './SearchPanel';
 import AnalyticsContainer from '../containers/AnalyticsContainer';
 
-const drawerWidth = '60%';
+const drawerWidth = '80%';
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -45,9 +46,11 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    overflow: 'hidden'
   },
   drawerPaper: {
     width: drawerWidth,
+    overflow: 'hidden'
   },
   drawerHeader: {
     display: 'flex',
@@ -56,6 +59,7 @@ const useStyles = makeStyles(theme => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
+    minHeight: '45px !important'
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -68,17 +72,20 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default ({ search, user, updateAnalyticsQuery }) => {
+export default ({ search, user, updateAnalyticsQuery, fetchGoogleVision, fetchImsearchResults, clearAnalytics }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = (selectedObject) => {
     updateAnalyticsQuery(selectedObject);
+    fetchGoogleVision(selectedObject.url);
+    fetchImsearchResults(selectedObject.url);
     setOpen(true);
   };
 
   const handleDrawerClose = () => {
+    clearAnalytics();
     setOpen(false);
   };
 
@@ -95,6 +102,9 @@ export default ({ search, user, updateAnalyticsQuery }) => {
         }}
       >
         <div className={classes.drawerHeader}>
+          <Typography component="h1" variant="h6" color="inherit" noWrap>
+            Analytics
+          </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
@@ -102,7 +112,6 @@ export default ({ search, user, updateAnalyticsQuery }) => {
         <Divider />
         <AnalyticsContainer />
       </Drawer>
-      {/* <main className={classes.content}> */}
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
@@ -111,7 +120,7 @@ export default ({ search, user, updateAnalyticsQuery }) => {
         <div className={classes.appBarSpacer} />
         <Grid container className={classes.container} direction="column" justify={search.results.length === 0 && !search.isFetchingResults ? "center" : "flex-start"} alignItems="center">
           {
-            <SearchPanel url={search.searchQuery} />
+            <SearchPanel url={search.searchQuery} primary={search.primary} updateAnalyticsQuery={handleDrawerOpen} />
           }
           <Results results={search.results} loading={search.isFetchingResults} updateAnalyticsQuery={handleDrawerOpen} />
         </Grid>

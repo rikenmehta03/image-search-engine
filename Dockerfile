@@ -12,6 +12,7 @@ RUN wget -nv https://www.dropbox.com/s/v8mz6xcj30cuu9a/search_engine_index.tar.g
 # Install requirements
 ADD requirements.txt /search-app
 RUN pip install -r requirements.txt
+RUN pip install google-cloud-vision
 
 # Add code
 ADD . /search-app

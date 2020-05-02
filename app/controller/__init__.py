@@ -1,1 +1,2 @@
 from .search_controller import SearchController, get_controller
+from .google_vision_controller import GoogleVisionController

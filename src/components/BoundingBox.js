@@ -7,7 +7,8 @@ import { makeStyles, fade } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        position: 'relative'
+        position: 'relative',
+        display: 'flex'
     },
     overlay: {
         display: 'flex',
@@ -60,7 +61,7 @@ export default ({ url, objects, clickHandler }) => {
 
     return (
         <div className={classes.root}>
-            <img src={url} alt={url} height='700px' onLoad={handleImageLoad} />
+            <img src={url} alt={url} onLoad={handleImageLoad} />
             {boxes}
         </div>
     );

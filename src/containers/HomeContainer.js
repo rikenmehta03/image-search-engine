@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Home from '../components/Home';
-import { updateAnalyticsQuery } from '../actions/analytics';
+import { updateAnalyticsQuery, fetchGoogleVision, fetchImsearchResults, clearAnalytics } from '../actions/analytics';
 
-const HomeContainer = ({ search, user, analytics, updateAnalyticsQuery }) => {
-    return <Home user={user} search={search} analytics={analytics} updateAnalyticsQuery={updateAnalyticsQuery}/>;
+const HomeContainer = (props) => {
+    return <Home {...props} />;
 }
 
 const mapStateToProps = state => ({
@@ -15,7 +15,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateAnalyticsQuery: (payload) => dispatch(updateAnalyticsQuery(payload))
+    updateAnalyticsQuery: (payload) => dispatch(updateAnalyticsQuery(payload)),
+    fetchGoogleVision: (query) => dispatch(fetchGoogleVision(query)),
+    fetchImsearchResults: (query) => dispatch(fetchImsearchResults(query)),
+    clearAnalytics: () => dispatch(clearAnalytics())
+
 });
 
 export default connect(
