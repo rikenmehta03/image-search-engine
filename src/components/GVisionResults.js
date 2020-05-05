@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
     },
     results: {
         paddingTop: theme.spacing(1),
-        height: '100%'
+        height: '100%',
+        width: '100%'
     },
     card: {
         height: '100%',
@@ -43,7 +44,7 @@ export default ({ data }) => {
     if (data)
         return (
             <div className={classes.root}>
-                <Typography variant="subtitle1"><b>Label: </b>{data.best_guess_labels[0].label}</Typography>
+                <Typography variant="subtitle1"><b>Label: </b>{data.best_guess_labels.length > 0 ? data.best_guess_labels[0].label : ""}</Typography>
                 <Grid
                     container
                     direction="row"

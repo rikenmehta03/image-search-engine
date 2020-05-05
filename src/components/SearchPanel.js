@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
-import { makeStyles, fade } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 import Search from '../containers/Search';
 import ResultImage from './ResultImage';

@@ -18,11 +18,11 @@ class Search(Resource):
     @token_required
     def get(self, current_user):
         args = query_parser.parse_args()
-        data = get_controller().search(args['q'])
-        return {'ok': True, 'data': data}
+        data, metadata = get_controller().search(args['q'])
+        return {'ok': True, 'data': data, 'metadata': metadata}
 
     @token_required
     def post(self, current_user):
         args = query_parser.parse_args()
-        data = get_controller().search(args['q'])
-        return {'ok': True, 'data': data}
+        data, metadata = get_controller().search(args['q'])
+        return {'ok': True, 'data': data, 'metadata': metadata}

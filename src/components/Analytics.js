@@ -44,10 +44,10 @@ export default ({ data }) => {
                     alignItems="flex-start"
                     spacing={2}
                 >
-                    <Grid item md={3}>
+                    <Grid item md={3} sm={6}>
                         <BoundingBox url={data.url} objects={data.objects} clickHandler={handleClick} />
                     </Grid>
-                    <Grid item md={9}>
+                    <Grid item md={9} sm={12}>
                         <ExpansionPanel defaultExpanded={true}>
                             <ExpansionPanelSummary
                                 expandIcon={<ExpandMoreIcon />}
@@ -60,7 +60,7 @@ export default ({ data }) => {
                                 <GVisionResults data={visionData} />
                             </ExpansionPanelDetails>
                         </ExpansionPanel>
-                        <ExpansionPanel>
+                        <ExpansionPanel defaultExpanded={true}>
                             <ExpansionPanelSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel2bh-content"
