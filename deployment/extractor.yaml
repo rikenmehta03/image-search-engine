@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: extractor
+  labels:
+    app: backend
+spec:
+  containers:
+    - name: extractor-container
+      image: rmehta3/search-engine-extractor
+      imagePullPolicy: IfNotPresent

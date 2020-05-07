@@ -7,7 +7,8 @@ REDIS_SERVICE_HOST = os.environ.get('REDIS_SERVICE_HOST', 'localhost')
 REDIS_SERVICE_PORT = os.environ.get('REDIS_SERVICE_PORT', '6379')
 config = {
     'MONGO_URI': "mongodb://{}:{}/".format(MONGO_SERVICE_HOST, MONGO_SERVICE_PORT),
-    'REDIS_URI': "redis://{}:{}/0".format(REDIS_SERVICE_HOST, REDIS_SERVICE_PORT)
+    'REDIS_URI': "redis://{}:{}/0".format(REDIS_SERVICE_HOST, REDIS_SERVICE_PORT),
+    'DETECTOR_MODE': 'remote'
 }
 
 if os.path.exists('/search-app/search_engine_index.tar.gz'):

@@ -61,7 +61,7 @@ export default ({ url, objects, clickHandler }) => {
 
     return (
         <div className={classes.root}>
-            <img src={url} alt={url} onLoad={handleImageLoad} />
+            <img src={url} alt={url} onLoad={handleImageLoad}/>
             {boxes}
         </div>
     );
